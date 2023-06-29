@@ -1,19 +1,46 @@
-import React from 'react'
-
+import React, { useEffect, useRef } from 'react'
 import './Audience.css'
 import NavbarTwo from '../Navbartwo/NavbarTwo'
+import {motion} from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { useAnimation } from 'framer-motion'
 
 const Audience = () => {
+    const handlescrollbar = useAnimation();
 
+    const{ref,inView}=useInView({
+      threshold:0.3
+    })
+  
+  
+    useEffect(()=>{
+      if(inView){
+        handlescrollbar.start({
+          top:5,
+          transition:{
+            type:"spring",duration:10,bounce:0.1
+          }
+        })
+      }
+if(!inView){
+  handlescrollbar.start({
+   bottom:0
+  })
+}
+  },[inView]);
+    
   return (
     <>
 <NavbarTwo/>
 
 <div className="container-fluid text-light mb-4 rightCard"  id='Students'  >
    
-    <div className="row reversecol"  >
+    <div className="row reversecol" ref={ref} >
         <div className="col-12 col-sm-6  right_heading">
+        <motion.div className='scrollbarRight' animate={handlescrollbar} ></motion.div>
+   
           <h3 className='text_bold'>Students</h3>
+
           <p>
 Rockfort Labs is dedicated to nurturing young talent and helping students dream big. We provide opportunities for students from the National Institute of Technology Tiruchirapalli (NITT) and surrounding colleges to work 
 on cutting-edge projects using the latest technology. Join us and unleash your potential to make a real-world impact.</p>
@@ -32,6 +59,8 @@ on cutting-edge projects using the latest technology. Join us and unleash your p
         </div>
 
         <div className="col-12 col-sm-6 left_heading">
+        <motion.div className='scrollbar' animate={handlescrollbar} ></motion.div>
+   
    <h3 className='text_bold'>Entrepreneurs</h3>
    <p>If you have a bold idea and the drive to turn it into a successful venture, Rockfort Labs is here to support you.
  Our venture studio connects aspiring entrepreneurs with experienced mentors, successful businesspeople, and faculty members from NITT and other colleges. We provide the necessary resources and investment to help you build scalable businesses and achieve entrepreneurial success.
@@ -42,8 +71,10 @@ on cutting-edge projects using the latest technology. Join us and unleash your p
 
 <div className="container-fluid text-light mb-4 rightCard" id='Investors'  >
    
-    <div className="row reversecol"  >
+    <div className="row reversecol" >
         <div className="col-12 col-sm-6  right_heading">
+        <motion.div className='scrollbarRight'  animate={handlescrollbar} ></motion.div>
+   
           <h3 className='text_bold'>Investors</h3>
           <p>Invest in the future of innovation with Rockfort Labs. We offer curated investment opportunities for visionary investors looking to support groundbreaking projects and high-potential startups. By partnering with us, you gain access to a diverse portfolio of ventures driven by passionate teams and backed by our extensive network of experts. Together, we can shape the future.
 </p>
@@ -59,6 +90,8 @@ on cutting-edge projects using the latest technology. Join us and unleash your p
         </div>
 
         <div className="col-12 col-sm-6 left_heading">
+        <motion.div className='scrollbar' animate={handlescrollbar} ></motion.div>
+   
    <h3 className='text_bold'>Projects</h3>
    <p>
 At Rockfort Labs, we identify pressing problems across industries and domains. We bring together talented students, successful entrepreneurs, experienced faculty, and investors to work on innovative solutions. Our projects harness cutting-edge technology and aim to make a real difference in the world. Explore our ongoing projects and be a part of the transformation.
@@ -70,6 +103,8 @@ At Rockfort Labs, we identify pressing problems across industries and domains. W
    
     <div className="row reversecol"  >
         <div className="col-12 col-sm-6  right_heading">
+        <motion.div className='scrollbarRight'  animate={handlescrollbar} ></motion.div>
+   
           <h3 className='text_bold'>Portfolio Companies</h3>
           <p>
 

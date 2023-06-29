@@ -8,11 +8,24 @@ export const CardRight = () => {
 
     const animationreverse=useAnimation()
     const animation=useAnimation()
-  
+  const handlescrollbar=useAnimation()
     const{ref,inView}=useInView({
       threshold:0.3
     })
     useEffect(()=>{
+      if(inView){
+        handlescrollbar.start({
+          top:5,
+          transition:{
+            type:"spring",duration:10,bounce:0.1
+          }
+        })
+      }
+if(!inView){
+  handlescrollbar.start({
+  bottom:0
+  })
+}
   if(inView){
     animation.start({
       x:0,
@@ -24,11 +37,12 @@ export const CardRight = () => {
   if(!inView){
     animation.start({x:'50vw'})
   }
+  
   if(inView){
     animationreverse.start({
       x:0,
       transition:{
-        type:"spring",duration:2,bounce:0.2
+        type:"spring",duration:10,bounce:0.2
       }
     })
   }
@@ -44,6 +58,8 @@ export const CardRight = () => {
     <div className="row reversecol"  >
         <div className="col-12 col-sm-6  right_heading">
         {/* <h3>Artificial intelligence</h3> */}
+        <motion.div className='scrollbarRight' animate={handlescrollbar} ></motion.div>
+   
 <p>
 <span className='bold_letter'>Our</span> mission is to be the leading provider of AI, ML, and IIoT solutions, delivering exceptional value to our clients. We aim to harness the potential of technology and drive transformative outcomes for businesses and society alike. 
 </p>
