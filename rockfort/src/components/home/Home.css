@@ -1,0 +1,24 @@
+body{
+   background-color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+
+
+  @media screen and (max-width: 520px) {
+    body{
+   
+      font-family: 'Poppins', sans-serif;
+
+   /* background-image: radial-gradient( circle farthest-corner at 6% 7%,rgba(229, 234, 236, 0.281) 7.9% ,  rgba(207, 237, 225, 0.722) 2%); */
+  
+    }
+  
+   }
+  ::-webkit-scrollbar{
+    display: none;
+  }
+  * {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }
